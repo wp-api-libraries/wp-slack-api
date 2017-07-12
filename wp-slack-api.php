@@ -1,10 +1,10 @@
 <?php
 /**
- * WP Slack API
+ * WP Slack API (https://api.slack.com/)
  *
  * @package WP-Slack-API
  */
- 
+
  /*
 * Plugin Name: WP Slack API
 * Plugin URI: https://github.com/wp-api-libraries/wp-slack-api
@@ -15,7 +15,7 @@
 * GitHub Plugin URI: https://github.com/wp-api-libraries/wp-slack-api
 * GitHub Branch: master
 */
- 
+
 /* Exit if accessed directly */
 if ( ! defined( 'ABSPATH' ) ) { exit; }
 
@@ -262,5 +262,14 @@ class SlackAPI {
 		return $this->make_request( 'chat.postMessage', $message, 'POST' );
 
 	}
+
+
+	/* PRESENCE & STATUS. */
+
+	public function set_custom_profile_status( $status_text, $status_emoji ) {
+		// POST slack.com/api/users.profile.set token=super_secret_token&profile=%7B%22status_text%22%3A%22riding%20a%20train%22%2C%22status_emoji%22%3A%22%3Amountain_railway%3A%22%7D
+
+	}
+
  }
 }
