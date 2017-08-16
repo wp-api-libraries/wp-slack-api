@@ -1,8 +1,9 @@
 <?php
 /**
- * WP Slack API (https://api.slack.com/)
+ * WP Slack API
  *
- * @package WP-Slack-API
+ * @link https://api.slack.com/ API Docs
+ * @package WP-API-Libraries\WP-Slack-API
  */
 
  /*
