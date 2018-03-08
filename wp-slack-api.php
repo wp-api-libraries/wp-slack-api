@@ -67,7 +67,7 @@ class SlackAPI {
 		$api_url = $this->api_url;
 
 		// If team name is defined in request options, add team name to API URL.
-		if ( rgar( $options, 'team' ) ) {
+		if ( in_array( 'team', $options ) ) {
 			$api_url = str_replace( 'slack.com', $options['team'] . '.slack.com', $api_url );
 			unset( $options['team'] );
 		}
@@ -89,7 +89,6 @@ class SlackAPI {
 
 		// Execute request.
 		$response = wp_remote_request( $request_url, $args );
-
 		// If WP_Error, die. Otherwise, return decoded JSON.
 		if ( is_wp_error( $response ) ) {
 
@@ -270,6 +269,20 @@ class SlackAPI {
 	public function set_custom_profile_status( $status_text, $status_emoji ) {
 		// POST slack.com/api/users.profile.set token=super_secret_token&profile=%7B%22status_text%22%3A%22riding%20a%20train%22%2C%22status_emoji%22%3A%22%3Amountain_railway%3A%22%7D
 
+	}
+
+	public function list_users(){
+		return $this->make_request( 'users.list' );
+	}
+
+	public function get_user_profile( $user ){
+		return $this->make_request( 'users.profile.get', array( 'user' => $user ) );
+	}
+
+	public function set_user_profile( $user, $profile ){
+		$profile = json_encode( $profile );
+		$profile = urlencode( $profile );
+		return $this->make_request( 'users.profile.set', array( 'user' => $user, 'profile' => $profile ), 'POST' );
 	}
 
  }
